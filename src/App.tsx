@@ -11,6 +11,8 @@ import CampaignsList from "@/pages/CampaignsList";
 import CampaignDetails from "@/pages/CampaignDetails";
 import CreateCampaign from "@/pages/CreateCampaign";
 import AdminDashboard from "@/pages/AdminDashboard";
+import HowItWorks from "@/pages/HowItWorks";
+import About from "@/pages/About";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +29,8 @@ const App = () => (
               <Route path="/campaigns/create" element={<CreateCampaign />} />
               <Route path="/campaigns/:id" element={<CampaignDetails />} />
               <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="/how-it-works" element={<HowItWorks />} />
+              <Route path="/about" element={<About />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
