@@ -18,7 +18,7 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 
 export default function CampaignDetails() {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const { user } = useAuth();
   const { toast } = useToast();
   const [donationAmount, setDonationAmount] = useState("");
@@ -26,6 +26,8 @@ export default function CampaignDetails() {
   const { data: campaign, isLoading } = useQuery({
     queryKey: ["campaign", id],
     queryFn: async () => {
+      if (!id) throw new Error("Campaign ID is required");
+      
       const { data, error } = await supabase
         .from("campaigns")
         .select("*")
