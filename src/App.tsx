@@ -18,6 +18,7 @@ import Testimonials from "@/pages/Testimonials";
 import AuthLayout from "@/pages/auth/AuthLayout";
 import Login from "@/pages/auth/Login";
 import Signup from "@/pages/auth/Signup";
+import Profile from "@/pages/Profile";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +38,7 @@ const App = () => (
               <Route path="/how-it-works" element={<HowItWorks />} />
               <Route path="/about" element={<About />} />
               <Route path="/testimonials" element={<Testimonials />} />
+              <Route path="/profile" element={<Profile />} />
               <Route path="/auth" element={<AuthLayout />}>
                 <Route path="login" element={<Login />} />
                 <Route path="signup" element={<Signup />} />
