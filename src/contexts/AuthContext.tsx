@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       if (error) throw error;
       return data as Tables<"profiles">;
     },
-    enabled: !!user?.id,
+    enabled: !!user?.id
   });
 
   useEffect(() => {
