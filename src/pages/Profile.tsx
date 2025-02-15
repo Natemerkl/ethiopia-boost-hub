@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
@@ -73,18 +72,20 @@ export default function Profile() {
       if (error) throw error;
       return data as Tables<"profiles">;
     },
-    enabled: !!user?.id,
-    onSuccess: (data) => {
-      if (data) {
-        form.reset({
-          full_name: data.full_name || "",
-          username: data.username || "",
-          currentPassword: "",
-          newPassword: "",
-        });
-      }
-    },
+    enabled: !!user?.id
   });
+
+  // Update form when profile data changes
+  useEffect(() => {
+    if (profile) {
+      form.reset({
+        full_name: profile.full_name || "",
+        username: profile.username || "",
+        currentPassword: "",
+        newPassword: "",
+      });
+    }
+  }, [profile, form]);
 
   // Update profile mutation
   const updateProfile = useMutation({
@@ -162,7 +163,7 @@ export default function Profile() {
 
       if (updateError) throw updateError;
 
-      queryClient.invalidateQueries({ queryKey: ["profile", user.id] });
+      queryClient.invalidateQueries({ queryKey: ["profile", user?.id] });
       toast({
         title: "Avatar updated",
         description: "Your profile picture has been updated successfully.",
